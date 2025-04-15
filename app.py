@@ -15,6 +15,12 @@ expected_features = data.data.shape[1]
 # stworzenie aplikacji fastapi
 app = FastAPI()
 
+# pobieranie API Key ze zmiennej środowiskowej
+API_KEY = os.getenv("API_KEY")
+
+if not API_KEY:
+    raise ValueError("API_KEY environment variable is not set")
+
 # połączenie się z bazą danych redis
 redis_client = redis.Redis(host=os.getenv("REDIS_HOST", "localhost"), port=int(os.getenv("REDIS_PORT", 6379)))
 
@@ -54,6 +60,11 @@ def get_model_info():
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
+
+
+@app.get("/api_key")
+def get_api_key():
+    return {"api_key": API_KEY}
 
 
 @app.get("/redis_check")
