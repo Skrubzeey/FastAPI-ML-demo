@@ -1,4 +1,5 @@
 import joblib
+import pandas
 from sklearn.metrics import accuracy_score
 from sklearn.datasets import load_wine
 

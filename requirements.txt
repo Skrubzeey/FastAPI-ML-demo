@@ -6,3 +6,4 @@ joblib
 pydantic
 redis
 pytest
+pandas
